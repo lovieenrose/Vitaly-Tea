@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Print N' Dine</title>
+
+    <!-- Google Fonts: Great Vibes -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #ffefdb;
+        }
+
+        /* LOADER SCREEN */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffefdb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 1s ease-out;
+        }
+
+        /* HIDE MAIN CONTENT INITIALLY */
+        .hidden {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        /* Coffee Cup */
+        .cup {
+            position: relative;
+            width: 220px;
+            height: 180px;
+            border: 8px solid #ffefdb;
+            box-shadow: 0 0 0 12px #352a22;
+            border-radius: 10px 10px 60px 75px;
+            background: url('images/loading-page/coffee.png');
+            background-repeat: repeat-x;
+            background-position: 0 130px;
+            animation: filling 4s forwards;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Filling Animation */
+        @keyframes filling {
+            0% { background-position: 0 130px; }
+            100% { background-position: 600px -70px; }
+        }
+
+        /* Cup Handle */
+        .cup .cup-handle {
+            position: absolute;
+            top: 10px;
+            right: -74px;
+            width: 65px;
+            height: 120px;
+            border: 12px solid #352a22;
+            border-radius: 20px 10px 50px 20px;
+        }
+
+        /* Steam Animation */
+        .cup .steam {
+            position: absolute;
+            border-radius: 15px 4px;
+            width: 12px;
+            animation: steaming 2s infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes steaming {
+            0%, 100% { opacity: 0; }
+            50% {
+                opacity: 1;
+                filter: blur(1.2px);
+                transform: translateY(-20px);
+            }
+        }
+
+        .cup .steam:nth-child(1) {
+            top: -80px;
+            left: 50px;
+            height: 50px;
+            background: #8b0000;
+            animation-delay: .2s;
+        }
+
+        .cup .steam:nth-child(2) {
+            top: -130px;
+            left: 90px;
+            height: 70px;
+            background: #8b0000;
+            animation-delay: .6s;
+        }
+
+        .cup .steam:nth-child(3) {
+            top: -110px;
+            left: 130px;
+            height: 60px;
+            background: #8b0000;
+            animation-delay: 1s;
+        }
+
+        /* Text inside the cup */
+        .cup .text {
+            position: absolute;
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'Great Vibes', cursive;
+            color: white;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            animation: fadeInText 4s infinite;
+        }
+
+        @keyframes fadeInText {
+            0% { opacity: 0; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Loading percentage */
+        .loading-percentage {
+            margin-top: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            font-family: 'Great Vibes', cursive;
+            color: #352a22;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOADER (Hides Content Until Page is Ready) -->
+    <div id="loader">
+        <div class="cup">
+            <span class="steam"></span>
+            <span class="steam"></span>
+            <span class="steam"></span>
+            <div class="cup-handle"></div>
+            <div class="text">Print N' Dine</div>
+        </div>
+        <div class="loading-percentage" id="loading-percentage">0%</div>
+    </div>
+
+    <!-- MAIN CONTENT (Hidden Until Loaded) -->
+    <div id="content" class="hidden">
+        <h1>WELCOME TO THE PRINT N' DINE!</h1>
+        <p>put the Home Page here.</p>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let percentage = 0;
+            const loadingText = document.getElementById("loading-percentage");
+            const loader = document.getElementById("loader");
+            const content = document.getElementById("content");
+
+            function updateLoading() {
+                if (percentage <= 100) {
+                    loadingText.textContent = percentage + "%";
+
+                    let speed = 50; // Syncs with 4s coffee filling animation (4000ms / 100 steps)
+                    percentage++;
+
+                    setTimeout(updateLoading, speed);
+                } else {
+                    // Smoothly hide loader and show content
+                    setTimeout(() => {
+                        loader.style.opacity = "0";
+                        setTimeout(() => {
+                            loader.style.display = "none";
+                            content.classList.remove("hidden"); // Show content
+                            content.style.opacity = "1";
+                        }, 1000);
+                    }, 500);
+                }
+            }
+
+            updateLoading();
+        });
+    </script>
+
+</body>
+
+</html>
