@@ -1,16 +1,3 @@
-// Page navigation active link
-
-document.addEventListener("DOMContentLoaded", function() {
-    const navLinks = document.querySelectorAll("#navbar a");
-    const currentPage = window.location.pathname.split("/").pop();
-
-    navLinks.forEach(link => {
-        if (link.getAttribute("href") === currentPage || (currentPage === "" && link.getAttribute("href") === "index.html")) {
-            link.classList.add("active");
-        }
-    });
-});
-
 function setActiveLink() {
     const links = document.querySelectorAll("#navbar a");
     
@@ -62,7 +49,7 @@ function setActiveLink() {
     
     const testimonials = [
     {
-    img: 'images/home-page/client2.jpg',
+    img: 'client2.jpg',
     name: 'Roscoe Del Fierro',
     title: 'CEO, Tech Company',
     rating: '⭐⭐⭐⭐⭐',
@@ -70,7 +57,7 @@ function setActiveLink() {
     message: 'The printing service was fast and high quality. I loved the cozy nook while waiting!'
     },
     {
-    img: 'images/home-page/client3.jpg',
+    img: 'client3.jpg',
     name: 'Schuyler Rockwell',
     title: 'Model',
     rating: '⭐⭐⭐⭐⭐',
@@ -78,7 +65,7 @@ function setActiveLink() {
     message: 'The printing service was fast and high quality. I loved the cozy nook while waiting!'
     },
     {
-    img: 'images/home-page/client4.jpg',
+    img: 'client4.jpg',
     name: 'Matt Yu',
     title: 'Photographer',
     rating: '⭐⭐⭐⭐',
@@ -86,7 +73,7 @@ function setActiveLink() {
     message: 'Their drinks are surprisingly good! I was genuinely impressed by the overall service'
     },
     {
-    img: 'images/home-page/client5.jpg',
+    img: 'client5.jpg',
     name: 'Royce Solarez',
     title: 'Manager, Retail Store',
     rating: '⭐⭐⭐',
@@ -94,7 +81,7 @@ function setActiveLink() {
     message: 'Good service, but the wait time was longer than expected. Drinks were nice though.'
     },
     {
-    img: 'images/home-page/client6.jpg',
+    img: 'client6.jpg',
     name: 'Aestherille Zeraphine',
     title: 'Student',
     rating: '⭐⭐⭐⭐',
@@ -102,7 +89,7 @@ function setActiveLink() {
     message: 'The cozy atmosphere and excellent printing service make Vitaly Tea my go-to spot!'
     },
     {
-    img: 'images/home-page/client7.jpg',
+    img: 'client7.jpg',
     name: 'Ali Mercadejas',
     title: 'Doctor',
     rating: '⭐⭐⭐⭐',
@@ -110,7 +97,7 @@ function setActiveLink() {
     message: 'Great quality prints and a fantastic place to relax with a cup of tea.'
     },
     {
-    img: 'images/home-page/client8.jpg',
+    img: 'client8.jpg',
     name: 'Zariyah Isla Leviste',
     title: 'Business Owner',
     rating: '⭐⭐⭐⭐⭐',
@@ -118,7 +105,7 @@ function setActiveLink() {
     message: 'Vitaly Tea’s printing service exceeded my expectations with its efficiency. Plus, their chai latte keeps me coming back!'
     },
     {
-    img: 'images/home-page/client9.jpg',
+    img: 'client9.jpg',
     name: 'Radleigh Vesarius Riego',
     title: 'Nurse',
     rating: '⭐⭐⭐⭐',
@@ -126,7 +113,7 @@ function setActiveLink() {
     message: 'The atmosphere is perfect for getting work done while enjoying a delicious cup of tea'
     },
     {
-    img: 'images/home-page/client10.jpg',
+    img: 'client10.jpg',
     name: 'Eurydyce Amethyst Hidalgo',
     title: 'Marketing Executive',
     rating: '⭐⭐⭐',
